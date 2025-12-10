@@ -28,18 +28,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal
 }: Readonly<{
   children: React.ReactNode,
-  modal?: React.ReactNode
+
 }>) {
   return (
     <html lang="en">
       <body className={`${roboto.variable}`}>
         <Header />
         <TanStackProvider>
-          {children}
-          {modal}
+          <main>
+            {children}
+
+          </main>
         </TanStackProvider>
         <Footer />
         <div id="modal-root"></div>
