@@ -4,6 +4,7 @@ import TanStackProvider from "@/components/TanstackProvider/TanstackProvider";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { Roboto } from 'next/font/google';
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 
 const roboto = Roboto({
@@ -26,23 +27,20 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+export default function RootLayout({ children, modal }: Readonly<{
   children: React.ReactNode,
-
+  modal: React.ReactNode
 }>) {
   return (
     <html lang="en">
       <body className={`${roboto.variable}`}>
-        <Header />
         <TanStackProvider>
-          <main>
-            {children}
-
-          </main>
+          <Header />
+          {children}
+          {modal}
+          <Footer />
+          <ReactQueryDevtools initialIsOpen={false} />
         </TanStackProvider>
-        <Footer />
         <div id="modal-root"></div>
       </body >
     </html>
