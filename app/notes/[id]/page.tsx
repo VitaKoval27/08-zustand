@@ -19,7 +19,7 @@ export async function getereteMetadata({ params }: NoteDetailProps): Promise<Met
             title: `Notes:${note.title}`,
             description: `${note.content.slice(0, 30)}`,
             images: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
-            // url
+            url: "https://08-zustand-7ugr.vercel.app/notes/filter/all"
         }
     }
 }
