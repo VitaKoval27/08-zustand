@@ -5,7 +5,7 @@ import * as Yup from "yup"
 import { createNote } from "@/lib/api";
 import type { newNoteProps } from "@/lib/api";
 import { useRouter } from "next/navigation";
-import { useNoteDraftStore } from "@/lib/stores/noteStores";
+import { useNoteDraftStore } from "@/lib/store/noteStore";
 import { useState } from "react";
 
 const NoteSchema = Yup.object().shape({
