@@ -19,7 +19,7 @@ export async function getereteMetadata({ params }: NotePageProps): Promise<Metad
             title: `Tag:${slug[0]} `,
             description: `List of notes  by tag:${slug[0]}`,
             images: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
-            // url
+            url: ""
         }
     }
 }

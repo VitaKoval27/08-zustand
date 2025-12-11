@@ -1,21 +1,12 @@
 "use client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import css from "./NoteForm.module.css"
-
 import * as Yup from "yup"
 import { createNote } from "@/lib/api";
 import type { newNoteProps } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import { useNoteDraftStore } from "@/lib/stores/noteStores";
-
-
-
-
-
-// interface NoteFormProps {
-//     // onClose: () => void,
-//     onSubmit: (value: newNoteProps) => void
-// }
+import { useState } from "react";
 
 const NoteSchema = Yup.object().shape({
     title: Yup.string()
@@ -24,7 +15,7 @@ const NoteSchema = Yup.object().shape({
         .required("'This is a required field'"),
     content: Yup.string()
         .max(500, "Content should be not more than 500 characters")
-        .required("THis is required field"),
+        .required("This is required field"),
     tag: Yup.string()
         .oneOf(['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'], "Please select a valid tag")
         .required("This field is required")
@@ -35,6 +26,7 @@ export default function NoteForm() {
     const queryClient = useQueryClient();
     const { draft, setDraft, clearDraft } = useNoteDraftStore();
     const router = useRouter()
+    const [errors, setErrors] = useState<Record<string, string>>({})
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setDraft({
@@ -46,14 +38,16 @@ export default function NoteForm() {
     const { mutate } = useMutation({
         mutationFn: (newNote: newNoteProps) => createNote(newNote),
         onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["notes"] });
             clearDraft()
+            setErrors({})
             router.push('/notes/filter/all')
         }
 
     })
 
 
-    const handleSubmit = (formData: FormData) => {
+    async function handleSubmit(formData: FormData) {
 
         const values: newNoteProps = {
             title: (formData.get("title") || "") as string,
@@ -66,11 +60,23 @@ export default function NoteForm() {
                 | "Personal"
             )
         }
-        console.log(values.title, values.content, values.tag)
-        mutate(values)
-
+        try {
+            await NoteSchema.validate(values, { abortEarly: false }
+            )
+            mutate(values)
+        } catch (error: unknown) {
+            if (error instanceof Yup.ValidationError) {
+                const validationErrors: Record<string, string> = {};
+                error.inner.map(err => {
+                    if (err.path) {
+                        validationErrors[err.path] = err.message;
+                    }
+                });
+                setErrors(validationErrors);
+            }
+            return
+        }
     }
-
 
     const handleCancel = () => {
         router.push("/notes/filter/all")
@@ -91,7 +97,7 @@ export default function NoteForm() {
                     defaultValue={draft?.title}
 
                 />
-
+                {errors.title && <span className={css.error}>{errors.title}</span>}
             </div>
 
             <div className={css.formGroup}>
@@ -105,7 +111,7 @@ export default function NoteForm() {
                     defaultValue={draft?.content}
 
                 />
-
+                {errors.content && <span className={css.error}>{errors.content}</span>}
             </div>
 
             <div className={css.formGroup}>
@@ -117,7 +123,7 @@ export default function NoteForm() {
                     <option value="Meeting">Meeting</option>
                     <option value="Shopping">Shopping</option>
                 </select>
-
+                {errors.tag && <span className={css.error}>{errors.tag}</span>}
             </div>
 
             <div className={css.actions}>
