@@ -2,7 +2,7 @@ import {create} from "zustand";
 import { newNoteProps } from "../api";
 import { persist } from 'zustand/middleware'
 
-type NoteDraftSrore={
+type NoteDraftStore={
     draft:newNoteProps,
     setDraft:(note:newNoteProps)=>void,
     clearDraft:()=>void
@@ -11,9 +11,9 @@ type NoteDraftSrore={
 const initialDraft:newNoteProps={
     title:"",
     content:"",
-    tag:""
+    tag:"Todo"
 }
-export const useNoteDraftStore=create<NoteDraftSrore>()(persist((set)=>({
+export const useNoteDraftStore=create<NoteDraftStore>()(persist((set)=>({
     draft: initialDraft,
     setDraft: (note) => set(() => ({ draft: note })),
     clearDraft: () => set(() => ({ draft: initialDraft })),

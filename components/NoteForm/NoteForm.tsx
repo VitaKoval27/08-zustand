@@ -11,7 +11,7 @@ import { useState } from "react";
 const NoteSchema = Yup.object().shape({
     title: Yup.string()
         .min(3, 'Title must be at least 3 characters')
-        .max(50, 'Title must be not more than 3 characters')
+        .max(50, 'Title must be not more than 50 characters')
         .required("'This is a required field'"),
     content: Yup.string()
         .max(500, "Content should be not more than 500 characters")
@@ -94,7 +94,7 @@ export default function NoteForm() {
                     name="title"
                     className={css.input}
                     onChange={handleChange}
-                    defaultValue={draft?.title}
+                    value={draft?.title}
 
                 />
                 {errors.title && <span className={css.error}>{errors.title}</span>}
@@ -108,7 +108,7 @@ export default function NoteForm() {
                     rows={8}
                     className={css.textarea}
                     onChange={handleChange}
-                    defaultValue={draft?.content}
+                    value={draft?.content}
 
                 />
                 {errors.content && <span className={css.error}>{errors.content}</span>}

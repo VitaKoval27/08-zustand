@@ -8,7 +8,7 @@ interface NoteDetailProps {
     params: Promise<{ id: string }>
 }
 
-export async function getereteMetadata({ params }: NoteDetailProps): Promise<Metadata> {
+export async function generateMetadata({ params }: NoteDetailProps): Promise<Metadata> {
     const { id } = await params
     const note = await getSingleNote(id)
 
@@ -18,8 +18,8 @@ export async function getereteMetadata({ params }: NoteDetailProps): Promise<Met
         openGraph: {
             title: `Notes:${note.title}`,
             description: `${note.content.slice(0, 30)}`,
-            images: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
-            url: "https://08-zustand-7ugr.vercel.app/notes/filter/all"
+            images: [{ url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg" }],
+            url: `https://08-zustand-7ugr.vercel.app/notes/filter/${id}`
         }
     }
 }

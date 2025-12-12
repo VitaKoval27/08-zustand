@@ -51,10 +51,11 @@ export default function NotesClient({ tag }: NotesClientProps) {
 
     const handlePageChange = (selectedPage: number) => {
         setPage(selectedPage + 1)
+        console.log(selectedPage)
     }
     const router = useRouter();
     const handleCreatingPage = () => {
-        router.push("/notes/action/create ")
+        router.push("/notes/action/create")
     }
 
 

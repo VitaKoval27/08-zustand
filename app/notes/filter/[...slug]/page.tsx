@@ -8,18 +8,18 @@ interface NotePageProps {
     params: Promise<{ slug: string[] }>
 }
 
-export async function getereteMetadata({ params }: NotePageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: NotePageProps): Promise<Metadata> {
     const { slug } = await params
 
 
     return {
-        title: `Tag:${slug[0]} `,
+        title: `Tag:${slug[0]}`,
         description: `List of notes  by tag:${slug[0]}`,
         openGraph: {
-            title: `Tag:${slug[0]} `,
+            title: `Tag:${slug[0]}`,
             description: `List of notes  by tag:${slug[0]}`,
-            images: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
-            url: "https://08-zustand-7ugr.vercel.app/notes/filter/all"
+            images: [{ url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg" }],
+            url: `https://08-zustand-7ugr.vercel.app/notes/filter/${slug[0]}`
         }
     }
 }
