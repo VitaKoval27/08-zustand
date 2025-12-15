@@ -25,6 +25,7 @@ export default function NotesClient({ tag }: NotesClientProps) {
 
     const [query, setQuery] = useState("")
     const [page, setPage] = useState(1)
+
     // const [isModalOpen, setIsModalOpen] = useState(false)
 
 
@@ -43,8 +44,9 @@ export default function NotesClient({ tag }: NotesClientProps) {
 
     const totalPages = data?.totalPages ?? 0
 
-    const handleSearch = (newQuery: string) => {
-        setQuery(newQuery);
+    const handleSearch = (newValue: string) => {
+
+        setQuery(newValue)
         setPage(1)
     }
     const debouncedSearch = useDebouncedCallback(handleSearch, 1000)
@@ -62,7 +64,7 @@ export default function NotesClient({ tag }: NotesClientProps) {
     return (
         <div className={css.app}>
             <header className={css.toolbar}>
-                <SearchBox onSearch={debouncedSearch} value={query} />
+                <SearchBox onSearch={debouncedSearch} />
                 {totalPages > 1 && (
                     <Pagination
                         pageCount={totalPages}

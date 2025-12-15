@@ -3,7 +3,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
     title: "Not Found",
-    description: "This page is not exist",
+    description: "This page does not exist",
     openGraph: {
         title: "Not Found",
         description: "This page does not exist",
