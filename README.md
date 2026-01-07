@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# React State Management with Zustand (HW-08) 🐻
 
-## Getting Started
+A React application focused on efficient state management using **Zustand** — a small, fast, and scalable barebones state-management solution.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 📝 Project Overview
+This project demonstrates how to manage global application state without the complexity of Redux. It covers creating stores, handling actions, and accessing state across different React components.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🛠 Tech Stack
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Zustand](https://img.shields.io/badge/Zustand-443E38?style=flat-square&logo=react&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🔑 Key Implementations & My Work:
+- **Zustand Store:** Created a centralized store to manage application data and UI logic.
+- **State Actions:** Implemented functions to update state, ensuring predictable data flow.
+- **Component Integration:** Connected multiple React components to the store using hooks for efficient re-rendering.
+- **Performance Optimization:** Leveraged Zustand's ability to prevent unnecessary renders by selecting only the needed state slices.
+- **Responsive Layout:** Ensured the UI remains functional and clean across different screen sizes.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### 🚀 Learning Outcomes
+* Moving away from Prop Drilling to global state management.
+* Understanding the difference between **Zustand** and Redux/Context API.
+* Building clean and maintainable React architecture.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🛠 How to Run Locally
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/VitaKoval27/08-zustand.git](https://github.com/VitaKoval27/08-zustand.git)
